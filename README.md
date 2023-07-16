@@ -205,31 +205,54 @@ We use controller class as callback function in route like 'ControllerClass@Meth
   }
   ```
 - ### Response Download
-    - first paste any file in the public folder , like audio, video or text, etc , i can make a text file in the public folder. my file is ```HHJN.txt``` 
-    - and also make a function in the api controller , i my case our api controller is MyController 
 
-    ```php
-    public function Download(){
-        return response()->download('HHJN.txt');
-    }
-    ``` 
+  - first paste any file in the public folder , like audio, video or text, etc , i can make a text file in the public folder. my file is `HHJN.txt`
+  - and also make a function in the api controller , i my case our api controller is MyController
+
+  ```php
+  public function Download(){
+      return response()->download('HHJN.txt');
+  }
+  ```
 
 ## 12. Sending And Catching
-  
-- ### Way of Send And Catch:
 
-Via URL Parameter
-Via Header
-JSON Data Via Body
-.option
+- ### Way of Send And Catch: [URL Parameter & JSON Data]
 
+  1. controller code
 
+  ```php
+  namespace App\Http\Controllers;
+  use App\Models\User;
+  use Illuminate\Http\Request;
 
+  class MyController extends Controller
+  {
+      function Catch(Request $request){
+          return $request;
+      }
+  }
+  ```
 
+  - routing file code
 
+  ```php
+  $router->post('/catch', 'MyController@Catch');
+  ```
 
+- ### Way of Send And Catch: [Header Parameter]
 
+  - controller code
 
+  ```php
+  namespace App\Http\Controllers;
+  use App\Models\User;
+  use Illuminate\Http\Request;
 
-
-
+  class MyController extends Controller
+  {
+      function Catch(Request $request){
+          return $request->header('PASS YOUR HEADER KEY');
+      }
+  }
+  ```

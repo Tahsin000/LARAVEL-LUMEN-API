@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class MyController extends Controller
 {
@@ -21,9 +21,8 @@ class MyController extends Controller
     //     // return 'second';
     //     return response()->download('HHJN.txt');
     // }
-    public function Catch(Request)
-    {
-
+    function Catch(Request $request){
+        return $request->header('HHJN');
     }
 
 }

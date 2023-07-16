@@ -1,8 +1,10 @@
 <?php
 
-$router->get('/first', 'MyController@first');
-$router->get('/second', 'MyController@second');
-$router->get('/download', 'MyController@Download');
+$router->post('/catch', 'MyController@Catch');
+
+// $router->get('/first', 'MyController@first');
+// $router->get('/second', 'MyController@second');
+// $router->get('/download', 'MyController@Download');
 
 // $router->get('/{name}', 'MyController@My');
 
