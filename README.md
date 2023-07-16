@@ -97,7 +97,7 @@ A REST API (Representational State Transfer API) is a web service architecture t
 
 - **Stateless Operations**: Each request is independent and self-contained. The server does not rely on the state of previous requests.
 
-## 5. Controller [How to create controller?]
+## 6. Controller [How to create controller?]
 
 - ### What is controller?
 
@@ -122,7 +122,7 @@ A REST API (Representational State Transfer API) is a web service architecture t
 
   ```
 
-## 6. Controller [How to use controller?]
+## 7. Controller [How to use controller?]
 
 We use controller class as callback function in route like 'ControllerClass@Method'
 
@@ -140,7 +140,8 @@ We use controller class as callback function in route like 'ControllerClass@Meth
   $router->get('/{id}', 'MyCon@My')
   ```
 
-## 6. API Response
+## 8. API Response
+
 - Simple String Json Response and Body
 - Json Response Body From Various Types Of Array
 - Redirect Response To Another URI
@@ -150,9 +151,85 @@ We use controller class as callback function in route like 'ControllerClass@Meth
   - Body
   - Header
 - ### Response Type:
-  - Simple String 
+  - Simple String
   - JSON
   - XML
   - Download
   - Redirect
+
+## 9. Response Area [Header]
+
+- write this code in the api controller file as your controller folder
+  ```php
+  public function My($name){
+      return response($name)
+          ->header('name', $name)
+          ->header('age', '45')
+          ->header('username', 'HHJN')
+          ->header('city', 'Dhaka');
+  }
+  ```
+
+## 10. JSON Response in Body From Array
+
+- ### Example
+  write this code in api controller file
+  ```php
+  public function My()
+  {
+      $myArray = [
+          "Peter" => "53",
+          "Ben" => "73",
+          "Joe" => "34",
+      ];
+      return response()->json($myArray);
+  }
+  ```
+
+## 11. JSON Response in Body From Array
+
+- ### Response Redirect
+  This is routing configuration
+  ```php
+  $router->get('/first', 'MyController@first');
+  $router->get('/second', 'MyController@second');
+  ```
+  This is controller code
+  ```php
+  public function first(){
+    return redirect('second');
+  }
+  public function second(){
+      // return 'second';
+    return redirect('first');
+  }
+  ```
+- ### Response Download
+    - first paste any file in the public folder , like audio, video or text, etc , i can make a text file in the public folder. my file is ```HHJN.txt``` 
+    - and also make a function in the api controller , i my case our api controller is MyController 
+
+    ```php
+    public function Download(){
+        return response()->download('HHJN.txt');
+    }
+    ``` 
+
+## 12. Sending And Catching
   
+- ### Way of Send And Catch:
+
+Via URL Parameter
+Via Header
+JSON Data Via Body
+.option
+
+
+
+
+
+
+
+
+
+
+

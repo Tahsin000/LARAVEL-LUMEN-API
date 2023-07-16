@@ -1,6 +1,10 @@
 <?php
 
-$router->get('/{name}', 'MyController@My');
+$router->get('/first', 'MyController@first');
+$router->get('/second', 'MyController@second');
+$router->get('/download', 'MyController@Download');
+
+// $router->get('/{name}', 'MyController@My');
 
 // $router->get('/get', function (){
 //     return "I am get method";
