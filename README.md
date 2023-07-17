@@ -242,7 +242,7 @@ We use controller class as callback function in route like 'ControllerClass@Meth
 
 - ### Way of Send And Catch: [Header Parameter]
 
-  - controller code
+  controller code
 
   ```php
   namespace App\Http\Controllers;
@@ -256,3 +256,28 @@ We use controller class as callback function in route like 'ControllerClass@Meth
       }
   }
   ```
+
+  ## 13. package manager in laravel
+
+  - ### In the laravelthe common package manager site is [packagist](https://packagist.org/)
+
+  - ### installation
+
+  ```php
+  composer require noitran/opendox
+  ```
+
+  - ### setup the bootstrap/app file configuration
+
+  ```php
+  $app->register(Noitran\Opendox\ServiceProvider::class);
+  $app->configure('opendox');
+  ```
+
+  - ### create a file as name as the ```api-docs.yml```
+    In the Inside of this file some code insert it
+
+  - ### Finally we will run this code
+    ```php
+    php artisan opendox:transform
+    ```
