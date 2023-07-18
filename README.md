@@ -293,9 +293,18 @@ $router->get('/', 'ExampleController@testConn');
 
 - ### Step: finally | output is your database name show up
 
-## 13. Database Operation [Select, Insert, Update, Delete]
+- ### How to get data or select data
+  this is the ExampleController code
+  ```php
+  function testConn(){
+      $dbname = DB::connection()->select("SELECT * FROM details");
+      return $dbname;
+  }
+  ```
 
-## 14. Database Operation [Database Migration]
+## 14. Basic CURD Rest API
+
+## 15. Database Operation [Database Migration]
 
 ---
 
