@@ -257,27 +257,100 @@ We use controller class as callback function in route like 'ControllerClass@Meth
   }
   ```
 
-  ## 13. package manager in laravel
+## 13. Database Operation
 
-  - ### In the laravelthe common package manager site is [packagist](https://packagist.org/)
+- ### Database Connection
 
-  - ### installation
+1. create a database and table in the xampp
+2. insert data
 
+- ### Step: 1 | import the DB class in the controller file
+
+```php
+use illuminate\support\Facades\DB;
+```
+
+- ### Step: 2 | if the DB class access we will enable the Facades folder go to the `app.php` then write this code
+
+```php
+$app->withFacades();
+```
+
+- ### Step: 3 | write this method in the controller
+
+```php
+function testConn(){
+  $dbname = DB::connection()->getDatabaseName();
+  return $dbname;
+}
+```
+
+- ### Step: 4 | routing configuration
+
+```php
+$router->get('/', 'ExampleController@testConn');
+```
+
+- ### Step: finally | output is your database name show up
+
+## 13. Database Operation [Select, Insert, Update, Delete]
+
+## 14. Database Operation [Database Migration]
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+## 15. package manager in laravel
+
+- ### In the laravelthe common package manager site is [packagist](https://packagist.org/)
+
+- ### installation
+
+```php
+composer require noitran/opendox
+```
+
+- ### setup the bootstrap/app file configuration
+
+```php
+$app->register(Noitran\Opendox\ServiceProvider::class);
+$app->configure('opendox');
+```
+
+- ### create a file as name as the `api-docs.yml`
+
+  In the Inside of this file some code insert it
+
+- ### Finally we will run this code
   ```php
-  composer require noitran/opendox
+  php artisan opendox:transform
   ```
-
-  - ### setup the bootstrap/app file configuration
-
-  ```php
-  $app->register(Noitran\Opendox\ServiceProvider::class);
-  $app->configure('opendox');
-  ```
-
-  - ### create a file as name as the ```api-docs.yml```
-    In the Inside of this file some code insert it
-
-  - ### Finally we will run this code
-    ```php
-    php artisan opendox:transform
-    ```

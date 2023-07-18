@@ -22,7 +22,7 @@ class MyController extends Controller
     //     return response()->download('HHJN.txt');
     // }
     function Catch(Request $request){
-        return $request->header('HHJN');
+        return $request->header('hhjn');
     }
 
 }

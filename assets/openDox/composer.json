@@ -1,0 +1,5 @@
+{
+    "require": {
+        "noitran/opendox": "^1.0"
+    }
+}

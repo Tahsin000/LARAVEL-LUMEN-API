@@ -1,0 +1,10 @@
+INSERT INTO `details`(`id`, `name`, `roll`, `city`, `phn`, `class`) VALUES (1, 'John Doe', 101, 'New York', '1234567890', '10th Grade'),
+(2, 'Jane Smith', 102, 'Los Angeles', '9876543210', '11th Grade'),
+(3, 'Michael Johnson', 103, 'Chicago', '5555555555', '12th Grade'),
+(4, 'Sarah Williams', 104, 'Houston', '8888888888', '9th Grade'),
+(5, 'David Brown', 105, 'San Francisco', '7777777777', '10th Grade'),
+(6, 'Emily Davis', 106, 'Boston', '6666666666', '11th Grade'),
+(7, 'Matthew Taylor', 107, 'Miami', '9999999999', '12th Grade'),
+(8, 'Ava Anderson', 108, 'Dallas', '1111111111', '9th Grade'),
+(9, 'Noah Wilson', 109, 'Seattle', '2222222222', '10th Grade'),
+(10, 'Olivia Thomas', 110, 'Denver', '3333333333', '11th Grade');
