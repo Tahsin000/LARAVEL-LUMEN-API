@@ -302,7 +302,36 @@ $router->get('/', 'ExampleController@testConn');
   }
   ```
 
-## 14. Basic CURD Rest API
+## 14. How to GET in data in lumen API
+
+- ### this is the controller get method code
+
+```php
+function DetailsSelect(Request $request)
+{
+  $request = DB::select("SELECT * FROM details");
+  return $request;
+}
+```
+
+## 15. How to POST in data in lumen API
+
+- ### this is the controller get method code
+  we will insert data `mysql prepared statements` method
+
+```php
+function DetailsCreate(Request $request)
+{
+  $name = $request->input("name");
+  $roll = $request->input('roll');
+  $city = $request->input('city');
+  $phn = $request->input('phn');
+  $class = $request->input('class');
+  $SQL = "INSERT INFO details ('name', 'roll', 'city', 'phn', 'class') VALUES (?, ?, ?, ?, ?)";
+  $result = DB::insert($SQL, [$name, $roll, $city, $phn, $class]);
+  
+}
+```
 
 ## 15. Database Operation [Database Migration]
 
