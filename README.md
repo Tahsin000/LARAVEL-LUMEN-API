@@ -302,7 +302,7 @@ $router->get('/', 'ExampleController@testConn');
   }
   ```
 
-## 14. How to GET in data in lumen API
+## 14. How to GET data in lumen API
 
 - ### this is the controller get method code
 
@@ -314,7 +314,7 @@ function DetailsSelect(Request $request)
 }
 ```
 
-## 15. How to POST in data in lumen API
+## 15. How to POST data in lumen API
 
 - ### this is the controller get method code
   we will insert data `mysql prepared statements` method
@@ -329,11 +329,188 @@ function DetailsCreate(Request $request)
   $class = $request->input('class');
   $SQL = "INSERT INFO details ('name', 'roll', 'city', 'phn', 'class') VALUES (?, ?, ?, ?, ?)";
   $result = DB::insert($SQL, [$name, $roll, $city, $phn, $class]);
-  
+
 }
 ```
 
-## 15. Database Operation [Database Migration]
+## 16. How to DELETE data in lumen API
+
+- ### this is the controller delete method code
+  we will delete data `mysql prepared statements` method
+
+```php
+function DetailsDelete(Request $request)
+{
+    $id = $request->input('id');
+    $SQL = "DELETE FROM `details` WHERE `id`=?";
+    $result = DB::delete($SQL, [$id]);
+    if ($result){
+      return "Data Delete successful";
+  } else {
+      return "Data Delete Fail ! Try Again";
+  }
+}
+```
+
+## 17. How to UPDATE data in lumen API
+
+- ### this is the controller update method code
+  we will update data `mysql prepared statements` method
+
+```php
+ function DetailsUpdate(Request $request)
+{
+  $roll = $request->input('roll');
+  $city = $request->input('city');
+  $phn = $request->input('phn');
+  $SQL = "UPDATE `details` SET `city`=?,`phn`=? WHERE `roll`=?";
+  $result = DB::update($SQL, [$city, $phn, $roll]);
+  if ($result) return "Success";
+  else return "Fail";
+}
+```
+
+## 18. Laravel Query Builder
+
+- ### Retrieving All Rows From A Table
+
+```php
+function AllRow(){
+  $result = DB::table('details')->get();
+  return $result;
+}
+```
+
+- ### Retrieving A Single Row / Column From A Table
+
+```php
+function Row(){
+  $result = DB::table('details')->where('roll', 1222)->first();
+  return $result->name;
+}
+```
+
+- ### Retrieve a single row by its id column value
+
+```php
+function Rows(){
+  $result = DB::table('details')->find(7);
+  return $result->name;
+}
+```
+
+- ### Retrieving A List Of Column Values
+
+```php
+ function Rows(){
+  $result = DB::table('details')->pluck('roll');
+  return $result;
+}
+```
+
+- ### Retrieving Specify a custom key column
+
+```php
+ function Rows(){
+   $result = DB::table('details')->pluck('name', 'roll');
+  return $result;
+}
+```
+
+## 19. Laravel Query Builder
+
+- ### Counting
+
+```php
+function Counting(){
+  $result = DB::table('details')->count();
+  return $result;
+}
+```
+
+- ### Maximum
+
+```php
+function Maximum(){
+  $result = DB::table('details')->max('roll');
+  return $result;
+}
+```
+- ### Average
+
+```php
+function Maximum(){
+  $result = DB::table('details')->avg('roll');
+  return $result;
+}
+```
+- ### Summation
+
+```php
+function Maximum(){
+  $result = DB::table('details')->sum('roll');
+  return $result;
+}
+- ### Summation
+
+```php
+function Maximum(){
+  $result = DB::table('details')->sum('roll');
+  return $result;
+}
+```
+- ### Insert
+
+```php
+function insert(){
+  $name = $request->input('name');
+  $roll = $request->input('roll');
+  $city = $request->input('city');
+  $phn = $request->input('phn');
+  $class = $request->input('class');
+  // return $class;
+  $result = DB::table('details')->insert([
+      'name'=>$name,
+      'roll'=>$roll,
+      'city'=>$city,
+      'phn'=>$phn,
+      'class'=>$class
+  ]);
+  if($result) return "Success";
+  else return "Fail";
+}
+- ### Summation
+
+```php
+function Maximum(){
+  $result = DB::table('details')->sum('roll');
+  return $result;
+}
+```
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
+
+---
 
 ---
 
