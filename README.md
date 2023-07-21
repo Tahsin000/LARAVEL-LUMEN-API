@@ -436,6 +436,7 @@ function Maximum(){
   return $result;
 }
 ```
+
 - ### Average
 
 ```php
@@ -444,9 +445,10 @@ function Maximum(){
   return $result;
 }
 ```
+
 - ### Summation
 
-```php
+````php
 function Maximum(){
   $result = DB::table('details')->sum('roll');
   return $result;
@@ -458,8 +460,9 @@ function Maximum(){
   $result = DB::table('details')->sum('roll');
   return $result;
 }
-```
-- ### Insert
+````
+
+- ### Insert (Query Builder)
 
 ```php
 function insert(){
@@ -479,14 +482,35 @@ function insert(){
   if($result) return "Success";
   else return "Fail";
 }
-- ### Summation
+```
+
+- ### Update (Query Builder)
 
 ```php
-function Maximum(){
-  $result = DB::table('details')->sum('roll');
-  return $result;
+function update(Request $request){
+  $name = $request->input("name");
+  $id = $request->input("id");
+  $result = DB::table('details')->where('id', $id)->update(['name'=>$name]);
+  if($result) return "Success";
+  else return "Fail";
 }
 ```
+
+- ### Delete (Query Builder)
+
+```php
+function update(Request $request){
+  $name = $request->input("name");
+  $id = $request->input("id");
+  $result = DB::table('details')->where('id', $id)->update(['name'=>$name]);
+  if($result) return "Success";
+  else return "Fail";
+}
+```
+
+## Lumen generator [click ME](https://github.com/flipboxstudio/lumen-generator)
+
+- ###
 
 ---
 
