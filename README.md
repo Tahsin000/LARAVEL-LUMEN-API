@@ -510,7 +510,30 @@ function update(Request $request){
 
 ## Lumen generator [click ME](https://github.com/flipboxstudio/lumen-generator)
 
-- ###
+- ### Eloquent QRM
+
+  - Each database table has a corresponding "Model"
+  - Used to interact with that tables 1015
+  - Models allow you to query for data in
+  - All Eloquent models extend Illuminate\Database\Eloquent\Model class
+  - command php artisan make:model details Count dbs
+
+- ### Model Variable Preparation
+
+  - protected $table = 'table name';
+  - protected $primaryKey = "id";
+  - public $incrementing = false;
+  - protected $keyType = 'string';
+  - public $timestamps = false;
+  - protected $dateFormat = 'U';
+
+- ### Retrieving Data Using Model
+ - Example 
+ ``` php
+ $result = App\ModelName::all();
+ $result = App\ModelName::where('active', 1)->get();
+
+ ```
 
 ---
 

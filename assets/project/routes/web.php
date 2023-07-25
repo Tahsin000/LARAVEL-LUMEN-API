@@ -1,6 +1,9 @@
 <?php
 
-$router->post('/catch', 'MyController@Catch');
+// $router->post('/catch', 'MyController@Catch');
+$router->get('/SelectALL', 'DetailsController@SelectAll');
+
+// $router->get('/selectAll', 'DetailsController@SelectAll');
 
 // $router->get('/first', 'MyController@first');
 // $router->get('/second', 'MyController@second');
