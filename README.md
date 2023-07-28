@@ -518,22 +518,119 @@ function update(Request $request){
   - All Eloquent models extend Illuminate\Database\Eloquent\Model class
   - command php artisan make:model details Count dbs
 
-- ### Model Variable Preparation
+- ### How to get Counting Element
+  this is the controller code
 
-  - protected $table = 'table name';
-  - protected $primaryKey = "id";
-  - public $incrementing = false;
-  - protected $keyType = 'string';
-  - public $timestamps = false;
-  - protected $dateFormat = 'U';
+```php
+<?php
 
-- ### Retrieving Data Using Model
- - Example 
- ``` php
- $result = App\ModelName::all();
- $result = App\ModelName::where('active', 1)->get();
+namespace App\Http\Controllers;
 
- ```
+use App\Models\DetailsModel;
+use Illuminate\Support\Facades\DB;
+
+class myController extends Controller
+{
+    function getData()
+    {
+        $result =  DB::table('details')->count();
+        return $result;
+    }
+}
+
+```
+
+- ### How to get `Max value` in the column Element
+  this is the controller code
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\DetailsModel;
+use Illuminate\Support\Facades\DB;
+
+class myController extends Controller
+{
+    function getData()
+    {
+        $result =  DB::table('details')->max('YOUR_COLUMN_NAME');
+        return $result;
+    }
+}
+
+```
+
+- ### How to get `Min value` in the column Element
+  this is the controller code
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\DetailsModel;
+use Illuminate\Support\Facades\DB;
+
+class myController extends Controller
+{
+    function getData()
+    {
+        $result =  DB::table('details')->max('YOUR_COLUMN_NAME');
+        return $result;
+    }
+}
+
+```
+
+- ### How to get `Avg value` in the column Element
+  this is the controller code
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\DetailsModel;
+use Illuminate\Support\Facades\DB;
+
+class myController extends Controller
+{
+    function getData()
+    {
+        $result =  DB::table('details')->avg('YOUR_COLUMN_NAME');
+        return $result;
+    }
+}
+```
+
+- ### How to get `Sum value` in the column Element
+  this is the controller code
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\DetailsModel;
+use Illuminate\Support\Facades\DB;
+
+class myController extends Controller
+{
+    function getData()
+    {
+        $result =  DB::table('details')->sum('roll');
+        return $result;
+    }
+}
+```
+
+- ## Database Migration
+  - Version control for your database
+  - Allow to create table programmatically ef
+  - Allow to modify table programatically initia
+  - To share the application's database schema
 
 ---
 
