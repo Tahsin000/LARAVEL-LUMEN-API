@@ -519,118 +519,165 @@ function update(Request $request){
   - command php artisan make:model details Count dbs
 
 - ### How to get Counting Element
+
   this is the controller code
 
-```php
-<?php
+  ```php
+  <?php
 
-namespace App\Http\Controllers;
+  namespace App\Http\Controllers;
 
-use App\Models\DetailsModel;
-use Illuminate\Support\Facades\DB;
+  use App\Models\DetailsModel;
+  use Illuminate\Support\Facades\DB;
 
-class myController extends Controller
-{
-    function getData()
-    {
-        $result =  DB::table('details')->count();
-        return $result;
-    }
-}
+  class myController extends Controller
+  {
+      function getData()
+      {
+          $result =  DB::table('details')->count();
+          return $result;
+      }
+  }
 
-```
+  ```
 
 - ### How to get `Max value` in the column Element
+
   this is the controller code
 
-```php
-<?php
+  ```php
+  <?php
 
-namespace App\Http\Controllers;
+  namespace App\Http\Controllers;
 
-use App\Models\DetailsModel;
-use Illuminate\Support\Facades\DB;
+  use App\Models\DetailsModel;
+  use Illuminate\Support\Facades\DB;
 
-class myController extends Controller
-{
-    function getData()
-    {
-        $result =  DB::table('details')->max('YOUR_COLUMN_NAME');
-        return $result;
-    }
-}
+  class myController extends Controller
+  {
+      function getData()
+      {
+          $result =  DB::table('details')->max('YOUR_COLUMN_NAME');
+          return $result;
+      }
+  }
 
-```
+  ```
 
 - ### How to get `Min value` in the column Element
+
   this is the controller code
 
-```php
-<?php
+  ```php
+  <?php
 
-namespace App\Http\Controllers;
+  namespace App\Http\Controllers;
 
-use App\Models\DetailsModel;
-use Illuminate\Support\Facades\DB;
+  use App\Models\DetailsModel;
+  use Illuminate\Support\Facades\DB;
 
-class myController extends Controller
-{
-    function getData()
-    {
-        $result =  DB::table('details')->max('YOUR_COLUMN_NAME');
-        return $result;
-    }
-}
+  class myController extends Controller
+  {
+      function getData()
+      {
+          $result =  DB::table('details')->max('YOUR_COLUMN_NAME');
+          return $result;
+      }
+  }
 
-```
+  ```
 
 - ### How to get `Avg value` in the column Element
+
   this is the controller code
 
-```php
-<?php
+  ```php
+  <?php
 
-namespace App\Http\Controllers;
+  namespace App\Http\Controllers;
 
-use App\Models\DetailsModel;
-use Illuminate\Support\Facades\DB;
+  use App\Models\DetailsModel;
+  use Illuminate\Support\Facades\DB;
 
-class myController extends Controller
-{
-    function getData()
-    {
-        $result =  DB::table('details')->avg('YOUR_COLUMN_NAME');
-        return $result;
-    }
-}
-```
+  class myController extends Controller
+  {
+      function getData()
+      {
+          $result =  DB::table('details')->avg('YOUR_COLUMN_NAME');
+          return $result;
+      }
+  }
+  ```
 
 - ### How to get `Sum value` in the column Element
+
   this is the controller code
 
-```php
-<?php
+  ```php
+  <?php
 
-namespace App\Http\Controllers;
+  namespace App\Http\Controllers;
 
-use App\Models\DetailsModel;
-use Illuminate\Support\Facades\DB;
+  use App\Models\DetailsModel;
+  use Illuminate\Support\Facades\DB;
 
-class myController extends Controller
-{
-    function getData()
-    {
-        $result =  DB::table('details')->sum('roll');
-        return $result;
-    }
-}
-```
+  class myController extends Controller
+  {
+      function getData()
+      {
+          $result =  DB::table('details')->sum('roll');
+          return $result;
+      }
+  }
+  ```
 
 - ## Database Migration
   - Version control for your database
   - Allow to create table programmatically ef
   - Allow to modify table programatically initia
   - To share the application's database schema
+- ### Generating And Running Migrations
+
+  - php artisan make:migration create_users_table to create migration file
+  - Placed in your database/migrations directory
+  - Migration file name contains a timestamp
+  - --table and --create options used to indicate the name of the table
+  - php artisan migrate to run migration ple dbs.options
+
+- ### To Create Table
+  ```php
+  php artisan make:migration create_users_table
+  ```
+  migration file Schema code
+  ```php
+   Schema::create('users', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->String('name');
+      $table->String('email');
+      $table->String('password');
+      $table->timestamps();
+  });
+  ```
+  - ### To Execute Migration
+  ```php
+  php artisan migrate
+  ```
+  - ### To Execute Migration
+  ```php
+  php artisan migrate
+  ```
+  - ### Reset Migration also call the delete
+  ```php
+  php artisan migrate:reset
+  ```
+  - ### Reset And Execute Again / mySQL all data is delete
+  ```php
+  php artisan migrate:refresh
+  ```
+
+## How Authentication Works
+
+![Alt text](REAME/image.png)
 
 ---
 
