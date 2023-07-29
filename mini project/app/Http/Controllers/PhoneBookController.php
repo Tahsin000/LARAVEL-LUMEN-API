@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 class PhoneBookController extends Controller
 {
-    function onInsert(Request $request){
+    function onInsert(Request $request)
+    {
         // $request->input('username');
         $token = $request->input('access_token');
         $key = env('TOKEN_KEY');
@@ -26,20 +27,51 @@ class PhoneBookController extends Controller
 
         /////////////////////// model
         $result = PhoneBookModel::insert([
-            'username'=> $user,
-            'phone_number_one'=> $one,
-            'phone_number_two'=> $two,
-            'name'=> $name,
-            'email'=> $email,
+            'username' => $user,
+            'phone_number_one' => $one,
+            'phone_number_two' => $two,
+            'name' => $name,
+            'email' => $email,
         ]);
 
-        if ($result){
+        if ($result) {
             return "Insert Successfully";
         } else {
             return "Insert Fail";
         }
     }
-    function onDelete(Request $request){}
-    function onUpdate(Request $request){}
-    function onSelect(Request $request){}
+    function onDelete(Request $request)
+    {
+        $email = $request->input('email');
+        $token = $request->input('access_token');
+        $key = env('TOKEN_KEY');
+        $decoded = JWT::decode($token, new Key($key, 'HS256'));
+        $decoded_array = (array)$decoded;
+        $user = $decoded_array['user'];
+
+        $result = PhoneBookModel::where([
+            'username'=>$user,
+            'email'=>$email
+        ])->delete();
+        if ($result){
+            return "Delete Successfully";
+        } else {
+            return "Delete Fail! try again";
+        }
+        // return $result;
+    }
+    function onUpdate(Request $request)
+    {
+    }
+    function onSelect(Request $request)
+    {
+        $token = $request->input('access_token');
+        $key = env('TOKEN_KEY');
+        $decoded = JWT::decode($token, new Key($key, 'HS256'));
+        $decoded_array = (array)$decoded;
+        $user = $decoded_array['user'];
+
+        $result = PhoneBookModel::where('username', $user)->get();
+        return $result;
+    }
 }

@@ -217,3 +217,37 @@
     ```php
     $router->post('/insert', ['middleware'=>'auth', 'uses'=>'PhoneBookController@onInsert']);
     ```
+    
+
+    -   ### delete data with the verify the JWT
+        this is the `PhoneBookController`onInsert method code
+
+    ```php
+    function onDelete(Request $request)
+    {
+        $email = $request->input('email');
+        $token = $request->input('access_token');
+        $key = env('TOKEN_KEY');
+        $decoded = JWT::decode($token, new Key($key, 'HS256'));
+        $decoded_array = (array)$decoded;
+        $user = $decoded_array['user'];
+
+        $result = PhoneBookModel::where([
+            'username'=>$user,
+            'email'=>$email
+        ])->delete();
+        if ($result){
+            return "Delete Successfully";
+        } else {
+            return "Delete Fail! try again";
+        }
+        // return $result;
+    }
+    ```
+
+    this is the routing code
+
+    ```php
+    $router->post('/delete', ['middleware'=>'auth', 'uses'=>'PhoneBookController@onDelete']);
+    ```
+    
