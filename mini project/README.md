@@ -109,19 +109,27 @@
     ```
 
 -   ## php JWT access_token - [Click ME](https://github.com/firebase/php-jwt)
+
     -   ### installing
+
     ```php
     composer require firebase/php-jwt
     ```
+
     -   ### import JWT File ,
+
     ```php
     use Firebase\JWT\JWT;
     ```
+
     -   ### Add a key in the method when we are using JWT.
+
     ```php
     $key = env('TOKEN_KEY');
     ```
-    -   ### Add payload array with proper information , this is the login php file code 
+
+    -   ### Add payload array with proper information , this is the login php file code
+
     ```php
       function onLogin(Request $request)
     {
@@ -147,11 +155,13 @@
         }
     }
     ```
-    - ### Middleware configuration (AuthServiceProvider)
+
+    -   ### Middleware configuration (AuthServiceProvider)
+
     ```php
     public function boot()
     {
-    
+
         $this->app['auth']->viaRequest('api', function ($request) {
             $token = $request->input('access_token');
             $key = env('TOKEN_KEY');
@@ -164,4 +174,46 @@
             }
         });
     }
+    ```
+
+    -   ### insert data with the verify the JWT
+        this is the `PhoneBookController`onInsert method code
+
+    ```php
+     function onInsert(Request $request){
+        // $request->input('username');
+        $token = $request->input('access_token');
+        $key = env('TOKEN_KEY');
+        $decoded = JWT::decode($token, new Key($key, 'HS256'));
+        $decoded_array = (array)$decoded;
+
+        // return $decoded_array['user'];
+        // return response()->json($decoded);
+        $user = $decoded_array['user'];
+        $one = $request->input('phone_number_one');
+        $two = $request->input('phone_number_two');
+        $name = $request->input('name');
+        $email = $request->input('email');
+
+        /////////////////////// model
+        $result = PhoneBookModel::insert([
+            'username'=> $user,
+            'phone_number_one'=> $one,
+            'phone_number_two'=> $two,
+            'name'=> $name,
+            'email'=> $email,
+        ]);
+
+        if ($result){
+            return "Insert Successfully";
+        } else {
+            return "Insert Fail";
+        }
+    }
+    ```
+
+    this is the routing code
+
+    ```php
+    $router->post('/insert', ['middleware'=>'auth', 'uses'=>'PhoneBookController@onInsert']);
     ```

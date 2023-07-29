@@ -25,9 +25,9 @@ class LoginController extends Controller
             $key = env('TOKEN_KEY');
             $payload = [
                 'site' => 'http://demo.com',
-                'aud' => $username,
+                'user' => $username,
                 'iat' => time(),
-                'exp' => time() + 60
+                'exp' => time() + 3600
             ];
             $jwt = JWT::encode($payload, $key, 'HS256');
             return response()->json(['TOKEN'=> $jwt, 'Status' => "Login Success"]);
