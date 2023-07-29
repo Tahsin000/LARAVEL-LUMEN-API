@@ -677,7 +677,7 @@ function update(Request $request){
 
 ## How Authentication Works
 
-![Alt text](REAME/image.png)
+  ![Alt text](REAME/image.png)
 
 ---
 
