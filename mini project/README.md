@@ -121,12 +121,47 @@
     ```php
     $key = env('TOKEN_KEY');
     ```
-    -   ### Add payload array with proper information
+    -   ### Add payload array with proper information , this is the login php file code 
     ```php
-    $payload = [
-        'iss' => 'http://example.org',
-        'aud' => 'http://example.com',
-        'iat' => 1356999524,
-        'nbf' => 1357000000
-    ];
+      function onLogin(Request $request)
+    {
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $userCount  = RegistrationModel::where([
+            'username' => $username,
+            'password' => $password,
+        ])->count();
+
+        if ($userCount) {
+            $key = env('TOKEN_KEY');
+            $payload = [
+                'site' => 'http://demo.com',
+                'aud' => $username,
+                'iat' => time(),
+                'nbf' => time() + 3600
+            ];
+            $jwt = JWT::encode($payload, $key, 'HS256');
+            return response()->json(['TOKEN'=> $jwt, 'Status' => "Login Success"]);
+        } else {
+            return "Wrong Username or Password";
+        }
+    }
+    ```
+    - ### Middleware configuration (AuthServiceProvider)
+    ```php
+    public function boot()
+    {
+    
+        $this->app['auth']->viaRequest('api', function ($request) {
+            $token = $request->input('access_token');
+            $key = env('TOKEN_KEY');
+            try{
+                $decoded = JWT::decode($token, new Key($key, 'HS256'));
+                return new User();
+
+            } catch(\Exception $e){
+                return null;
+            }
+        });
+    }
     ```
